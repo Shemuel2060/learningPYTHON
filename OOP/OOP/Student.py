@@ -15,6 +15,13 @@ class Student:
     def get_hobby(cls): #cls references the class.
         return random.choice(cls.hobbies)
     
+    @classmethod
+    def createStudent(cls):
+        name = input("Name? ")
+        house = input("House? ")
+        status = input("Day or Boarding (D or B)? ")
+        return cls(name,house,status)
+    
     # constructor/initialization method
     def __init__(self,name,house,status="BOARDING"):
         self.name = name
@@ -67,14 +74,19 @@ class Student:
     
     # other methods here...
     
-    
+########################################################
+
+class Candidate(Student):
+    def __init__(self, name,house,status,age):
+        super().__init__(name,house,status)
+        self.age = age
+
+
+########################################################    
     
 def main():
-    # create a student object
-    name = input("Name? ")
-    house = input("House? ")
-    status = input("Day or Boarding (D or B)? ")
-    student = Student(name, house,status)
+    # create a student object   
+    student = Student.createStudent()
     print(student.name, "|", student.house,"|", student.status)
     # using class method and variable.
     print(f"Hobby: {Student.get_hobby()}")
